@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Restaurant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="shortcut icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ9GALogoNx99P9wOvGWKnDaDpRlAAjGFNSRiffwEM85WO31i5xygGKlO9fxXboxshJr4&usqp=CAU"
+    type="image/x-icon">
+  <style>
+    body {
+      background-image: url("https://interiordesign.net/wp-content/uploads/2024/04/InteriorDesign_March2024_Brave-New-World-11-1024x768.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--white-color);
+      overflow-x: hidden;
+    }
+
+
+    :root {
+      --white-color: #fff;
+      --dark-color: #252525;
+      --primary-color: #4a01101f;
+      --secondary-color: #f3961c;
+      --font-size-xl: 2rem;
+      --font-size-xxl: 2.3rem;
+      --font-size-m: 1.12rem;
+      --border-radius-m: 30px;
+      --site-max-width: 1300px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      color: var(--primary-color);
+      color: var(--white-color);
+      overflow-x: hidden;
+    }
+
+    header {
+      color: var(--primary-color);
+      position: fixed;
+      width: 100%;
+      z-index: 20;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      position: relative;
+      z-index: 25;
+    }
+
+    .logo-text {
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      color: var(--white-color);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-text img {
+      width: 50px;
+      height: 50px;
+      margin-right: 8px;
+      border-radius: 50%;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      transition: left 0.3s ease;
+    }
+
+    .nav-link {
+      color: var(--white-color);
+      padding: 10px 18px;
+      background: var(--secondary-color);
+      border-radius: var(--border-radius-m);
+      text-decoration: none;
+      font-size: var(--font-size-m);
+      transition: 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--white-color);
+      color: var(--primary-color);
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px;
+    }
+
+    .section-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--site-max-width);
+      width: 100%;
+      padding: 0 20px;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .hero-image-wrapper {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .hero-details {
+      flex: 1;
+    }
+
+    .title {
+      font-size: var(--font-size-xxl);
+      color: var(--secondary-color);
+      font-family: "Miniver", cursive;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      max-width: 70%;
+    }
+
+    .description {
+      margin: 24px 0 40px;
+      font-size: var(--font-size-m);
+      max-width: 70%;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 23px;
+    }
+
+    .button {
+      padding: 10px 26px;
+      border: 2px solid transparent;
+      color: var(--primary-color);
+      border-radius: var(--border-radius-m);
+      background: var(--secondary-color);
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      color: var(--white-color);
+      border-color: var(--white-color);
+      background: transparent;
+    }
+
+    #menu-open-button,
+    #menu-close-button {
+      display: none;
+    }
+
+    /* ---------- ABOUT SECTION ---------- */
+    .about-section {
+      background: var(--white-color);
+      color: var(--secondary-color);
+      padding: 100px 20px;
+    }
+
+    .about-section .section-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .about-image-wrapper {
+      flex: 1;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-image-wrapper img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid var(--secondary-color);
+      display: block;
+    }
+
+    .about-details {
+      flex: 1;
+    }
+
+    .about-details h2 {
+      font-size: var(--font-size-xl);
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .about-details .text {
+      font-size: var(--font-size-m);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .social-link-list {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-link {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      transition: 0.3s;
+    }
+
+    .social-link:hover {
+      color: var(--secondary-color);
+    }
+
+    /* ---------- MENU SECTION ---------- */
+    .menu {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      background: #111;
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    .menu.show {
+      display: block;
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .section-title {
+      font-family: "Miniver", cursive;
+      color: var(--secondary-color);
+      font-size: 2.3rem;
+      margin-bottom: 40px;
+    }
+
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-item {
+      background: #222;
+      border-radius: 20px;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .menu-item h3 {
+      color: var(--secondary-color);
+    }
+
+    .menu-item span {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    .close-menu-btn {
+      margin-top: 40px;
+      padding: 10px 30px;
+      color: var(--secondary-color);
+      border: none;
+      border-radius: var(--border-radius-m);
+      color: var(--white-color);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-menu-btn:hover {
+      background: var(--white-color);
+      color: var(--primary-color);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      #menu-open-button {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--secondary-color);
+        color: var(--white-color);
+        border: none;
+        padding: 10px 15px;
+        border-radius: var(--border-radius-m);
+        font-size: 1.5rem;
+        z-index: 30;
+      }
+
+      #menu-close-button {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--secondary-color);
+        color: var(--white-color);
+        border: none;
+        padding: 10px 15px;
+        border-radius: var(--border-radius-m);
+        font-size: 1.5rem;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 260px;
+        height: 100vh;
+        background: var(--white-color);
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 20px;
+        transition: left 0.3s ease;
+        z-index: 50;
+      }
+
+      body.show-mobile-menu .nav-menu {
+        left: 0;
+      }
+
+      .nav-link {
+        color: var(--dark-color);
+        margin-top: 17px;
+      }
+
+      body.show-mobile-menu::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        backdrop-filter: blur(6px);
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 10;
+      }
+
+      .hero-section .section-content {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-section .hero-image-wrapper {
+        max-width: 270px;
+        margin: 0 auto;
+      }
+
+      .hero-section .hero-details :is(.subtitle, .description) {
+        max-width: 100%;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .about-section .section-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-image-wrapper img {
+        width: 250px;
+        height: 250px;
+      }
+
+      .social-link-list {
+        justify-content: center;
+      }
+    }
+
+    .gallery-section {
+      color: var(--white-color);
+      color: var(--dark-color);
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .comment-section {
+      background: var(--white-color);
+      color: var(--dark-color);
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .comment-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--secondary-color);
+      border-radius: 10px;
+      font-size: 1rem;
+      resize: none;
+      outline: none;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 5px rgba(243, 150, 28, 0.4);
+    }
+
+    .comment-form .button {
+      color: var(--secondary-color);
+      color: var(--white-color);
+      border: none;
+      padding: 12px;
+      border-radius: var(--border-radius-m);
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .comment-form .button:hover {
+      color: var(--primary-color);
+    }
+
+    .footer {
+      color: var(--primary-color);
+      color: var(--white-color);
+      padding: 60px 20px 30px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: "Miniver", cursive;
+      font-size: var(--font-size-xxl);
+      color: var(--secondary-color);
+    }
+
+    .footer-desc {
+      margin-top: 10px;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .footer-contact {
+      margin-top: 25px;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .footer-contact i {
+      color: var(--secondary-color);
+      margin-right: 8px;
+    }
+
+    .footer-social {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-social a {
+      color: var(--white-color);
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+
+    .footer-social a:hover {
+      color: var(--secondary-color);
+    }
+
+    .footer-bottom {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 15px;
+    }
+
+    .fifo {
+      padding: 5%;
+    }
+
+    .fifo1 {
+      padding: 5%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- content same as before -->
+</body>
+
+</html>
+
+</style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <h2 class="logo-text">
+        <img src="https://themewagon.com/wp-content/uploads/2021/10/feane-1.png" alt="Logo" />
+        <u> <i>Fast Food Restaurant</i></u>
+      </h2>
+      <button id="menu-open-button"><i class="fas fa-bars"></i></button>
+      <ul class="nav-menu">
+        <button id="menu-close-button"><i class="fas fa-times"></i></button>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#" id="show-menu-btn" class="nav-link">Menu</a></li>
+        <li><a href="#" class="nav-link">Gallery</a></li>
+        <li><a href="#" class="nav-link">Suggestions</a></li>
+        <li><a href="#" class="nav-link">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="section-content">
+        <div class="hero-image-wrapper">
+          <img class="fifo"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJcMci5YaG1yVZ20lHd8RhSWLHbVT2m9XzCw&s" alt="">
+          <img class="fifo1" src="https://i.pinimg.com/736x/fc/56/4d/fc564d8946c75fca0d87414f316836b3.jpg"
+            alt="food restaurant" />
+        </div>
+        <div class="hero-details">
+          <h2 class="title">Best food Restaurant</h2>
+          <h3 class="subtitle"><i><small>Restaurant content should be diverse, showcasing food, behind-the-scenes
+                stories,
+                customer testimonials, and specials to engage a wider audience. Effective content includes using
+                descriptive
+                language for dishes, telling the restaurant's origin story, providing helpful information, and offering
+                exclusive deals. Diversifying beyond just food photos, like through video and user-generated content, is
+                key
+                to building a brand and driving visits</small></i></h3>
+          <p class="description"><i>Welcome to our coffee paradise, where every bean tells a story and every cup sparks
+              joy.</i></p>
+          <div class="buttons">
+            <a href="#" class="button">Order Now</a>
+            <a href="#" class="button">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="section-content">
+        <div class="about-image-wrapper">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQM5ZmoThK51oqgKXc_6l2VP3tLRTsbBjl8D261Q7V7AkHWQrSoP5WmFRoXCjUA46dOQE&usqp=CAU"
+            alt="">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGncUncK8krHNz1nfLwnYj1NO4eu-ZuL5PiQB1k9LyBsTZQrKoNcNRbZOBSfvqdNXaZGM&usqp=CAU"
+            alt="">
+        </div>
+        <div class="about-details">
+          <center>
+            <h1><u>About Us</u></h1>
+          </center>
+          <p class="text">
+            <center> <i>
+                <marquee behavior="" direction="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
+                  consequuntur non sequi.
+                  Illum neque eos, minus animi repellat quaerat doloribus velit? Veniam nemo ipsa aspernatur laborum
+                  veritatis obcaecati nisi, quam ex voluptatum. Qui harum omnis ab eveniet corporis veniam ut saepe at
+                  fuga accusamus eius enim quos quo, maxime suscipit totam? Exercitationem iusto, repellat itaque minima
+                  maxime, impedit laboriosam quo, culpa ea ullam voluptatum explicabo velit sed reprehenderit a? Eaque
+                  labore iste quia quam dicta nostrum, incidunt, fugiat mollitia sapiente dolorem eos doloribus ex! Quos
+                  fugiat doloremque, inventore ab enim modi autem consequuntur nemo voluptatem molestias in sapiente
+                  minima accusantium obcaecati, recusandae ullam earum, voluptates nobis nisi iusto. Sunt harum hic ea
+                  ducimus odio dolore sint consectetur porro unde iste qui animi aspernatur eum soluta, repellendus, nam
+                  cupiditate veritatis consequatur repudiandae vitae quibusdam. Vel veritatis architecto qui. Saepe
+                  dignissimos soluta consequatur odio rerum hic minus dicta, reiciendis numquam ab voluptates, omnis
+                  ipsum
+                  voluptatem quo aliquid! Adipisci accusamus qui atque excepturi, sint dolor iure blanditiis vitae modi
+                  minima libero eveniet error commodi iste quos rerum veniam, nulla nam natus architecto? Corporis eius
+                  vitae sed nobis dolore earum maiores porro voluptatum fuga similique placeat ipsa excepturi cupiditate
+                  dolor ad, velit error? Debitis.
+                  At Coffee House in Berndorf, Germany, we pride ourselves on being a go-to destination for coffee
+                  lovers
+                  and
+                  relaxation seekers alike.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime esse, corrupti eius nam beatae
+                  repudiandae corporis quis assumenda molestias officiis veritatis iure porro doloremque, excepturi,
+                  deleniti autem aliquam quia similique officia aut saepe minus? Optio eos unde debitis pariatur libero,
+                  consequuntur assumenda quae perspiciatis mollitia obcaecati iste sed, doloribus enim nesciunt
+                  asperiores
+                  tempora similique quibusdam officiis dolorem! Earum quasi fugit itaque. Illo beatae dignissimos
+                  nostrum
+                  necessitatibus facilis nam quibusdam sapiente? Ab magnam, minima iusto consequatur cumque quidem
+                  blanditiis velit harum recusandae! Voluptatem aspernatur voluptate dolorum tempora, id natus cum
+                  delectus? Et aperiam accusantium minus dolores velit vero quas quis molestias accusamus recusandae hic
+                  autem nesciunt atque fuga rem, soluta omnis labore provident consequuntur fugit doloribus iste nam
+                  iusto
+                  cupiditate. Non debitis, deserunt, voluptatum numquam asperiores, animi consequatur quo harum rerum
+                  dolores consequuntur corporis? Nulla amet tenetur autem repudiandae incidunt doloremque maxime. Vel,
+                  aliquid. Blanditiis a unde molestiae odio nisi ipsam velit deserunt sed quisquam dolores minus
+                  veritatis
+                  vel delectus fuga corrupti hic adipisci quam laborum esse dignissimos, quibusdam alias. Fuga qui neque
+                  ipsum fugit natus laborum corporis! Eligendi, mollitia? Doloribus odio asperiores aspernatur, illum,
+                  consequatur aliquid assumenda tenetur amet minima ipsam ipsum temporibus enim atque dolor fuga
+                  incidunt
+                  quasi omnis.
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt natus perspiciatis ullam
+                  asperiores.
+                  Enim fugit illo officia natus dignissimos, nostrum quisquam quasi ab omnis aperiam totam. Numquam
+                  deserunt similique omnis.</marquee>
+              </i></center>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="menu">
+      <h2 class="section-title">Our Menu</h2>
+      <div class="menu-container">
+
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9z05-woaf9HMJym_vlGqutBQoeXMwYUuvWg&s"
+            alt="Espresso">
+          <h3>Espresso</h3>
+          <p>Rich and best dessert menu </p>
+          <span>100 Rs</span>
+        </div>
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmbFnJ-zVdwIfyzy9LwxYJznVkYA2JUEPxVWiwlbl0YSzjNqxll59HrTTtQKFBsDRzQs&usqp=CAU"
+            alt="Cappuccino">
+          <h3>Cappuccino</h3>
+          <p>course fireworks dinner</p>
+          <span>80 Rs</span>
+        </div>
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShMihGN5wC9p8TI9odo7_PI8_Q7uf3FqbwhTdqvAoUCL_QNPYzlvotDjXE2sTQ9vtUeqo&usqp=CAU"
+            alt="Latte">
+          <h3>Latte</h3>
+          <p>Soft and smooth flavor</p>
+          <span>60 Rs</span>
+        </div>
+
+
+        <div class="menu-item">
+          <img
+            src="https://media.istockphoto.com/id/959584318/photo/making-dinner-into-a-masterpiece.jpg?s=612x612&w=0&k=20&c=5sadZdufW-4j_ZmV3XM8KSZXRFcYRD-Nmh0vqTkIS7Y="
+            alt="Espresso">
+          <h3>i stock</h3>
+          <p>food restaurant</p>
+          <span>50 Rs</span>
+        </div>
+
+
+
+        <div class="menu-item">
+          <img src="https://www.chefstore.com/images/imagebank/blog/header_how_to_design_a_balanced_dessert_menu.jpg"
+            alt="Espresso">
+          <h3>Cardamom Tea</h3>
+          <p> Warm flavour</p>
+          <span>60 Rs</span>
+        </div>
+
+
+
+
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYS56Djrv15DF5dsVtUi47dMzbMPR0Pf5H0Wh4-ci9GmH24VGd5ObxHZVTjtM5geCtRc&usqp=CAU"
+            alt="Espresso">
+          <h3>Black Coffee</h3>
+          <p>Rich and bold coffee shot</p>
+          <span>70 Rs </span>
+        </div>
+
+
+
+
+
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBUbhKqmDcAQs9YklHUNG0UDuRlYzAAdROjQ6OPrI4RgJ_9EB1nr1cJZ_qH8QwgMPRDdE&usqp=CAU"
+            alt="Espresso">
+          <h3>Cold Coffee</h3>
+          <p>Rich and flavor coffee shot</p>
+          <span>110 Rs</span>
+        </div>
+
+
+
+
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBUVTLU9YlwymIS7lVncjGb9aOmXrdClQwAUM8nrP3PUQnfHzT_68UaqdbSpoHFLwyK0E&usqp=CAU"
+            alt="Espresso">
+          <h3>Tea Bag Tea</h3>
+          <p>Bold shot</p>
+          <span>30</span>
+        </div>
+
+
+      </div>
+      <button class="close-menu-btn" id="close-menu-btn">Close Menu</button>
+    </section>
+  </main>
+
+
+
+  <section id="gallery" class="gallery-section">
+    <h2 class="section-title">Our Gallery</h2>
+    <div class="gallery-grid">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6Ty3pnkdVccmppwvvs1MuW27tRU7w8ImT3w&s"
+        alt="Coffee 1">
+      <img
+        src="https://media.istockphoto.com/id/1181396290/photo/people-laughing-at-dinner-table.jpg?s=612x612&w=0&k=20&c=6Vyn5ppOp9fLqOeVKL9KCWfNYS69_SchgiOyviVAVuM="
+        alt="Coffee 2">
+      <img
+        src="https://media.istockphoto.com/id/1054319798/photo/group-of-happy-friends-having-breakfast-in-the-restaurant.jpg?s=2048x2048&w=is&k=20&c=PF2xeZOILpt1Hrd8ZuKfcHipo39yBRcFqO0LdSIe2uQ="
+        alt="Coffee 3">
+      <img
+        src="https://www.tastingtable.com/img/gallery/restaurant-foods-that-always-taste-better-than-what-you-make-at-home/intro-1666028678.jpg"
+        alt="Coffee 4">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDubsEyhoVNDaSDstWQS7_ovPd13RwFT0Xqg&s"
+        alt="Coffee 5">
+      <img
+        src="https://c8.alamy.com/comp/2G5E7GF/happy-people-eating-and-cheering-at-food-truck-restaurant-focus-on-left-girl-face-2G5E7GF.jpg"
+        alt="Coffee 6">
+      <img
+        src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/streams/2014/October/141006/2D274906938828-today-cafeteria-140811-01.jpg"
+        alt="Coffee 7">
+      <img
+        src="https://tse1.explicit.bing.net/th/id/OIP.JnryBkYCLWmUJuAx7iBKAAHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Coffee 8">
+    </div>
+  </section>
+  <section id="comments" class="comment-section">
+    <h2 class="section-title">Leave a Comment</h2>
+    <form class="comment-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Write your comment..." required></textarea>
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <h2 class="footer-logo">fast food restaurant </h2>
+      <p class="footer-desc">Brewing happiness, one at a time.</p>
+
+      <div class="footer-contact">
+        <p><i class="fa-solid fa-envelope"></i> Food Restaurant@gmail.com</p>
+        <p><i class="fa-solid fa-phone"></i> +918433001082</p>
+        <p><i class="fa-solid fa-location-dot"></i> Connaught Place, New Delhi</p>
+      </div>
+
+      <div class="footer-social">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+      </div>
+    </div>
+
+    <p class="footer-bottom">© 2025 Food-Restaurant | All Rights Reserved</p>
+  </footer>
+
+
+  <script>
+    const openBtn = document.getElementById("menu-open-button");
+    const closeBtn = document.getElementById("menu-close-button");
+    const showMenuBtn = document.getElementById("show-menu-btn");
+    const menuSection = document.getElementById("menu");
+    const closeMenuBtn = document.getElementById("close-menu-btn");
+
+    // Mobile menu open/close
+    openBtn.addEventListener("click", () => {
+      document.body.classList.add("show-mobile-menu");
+      document.body.style.overflow = "hidden";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      document.body.classList.remove("show-mobile-menu");
+      document.body.style.overflow = "";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (document.body.classList.contains("show-mobile-menu") &&
+        !e.target.closest(".nav-menu") &&
+        !e.target.closest("#menu-open-button")) {
+        document.body.classList.remove("show-mobile-menu");
+        document.body.style.overflow = "";
+      }
+    });
+
+    // Show/Hide menu section
+    showMenuBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      menuSection.classList.add("show");
+      window.scrollTo({ top: menuSection.offsetTop - 80, behavior: "smooth" });
+    });
+
+    closeMenuBtn.addEventListener("click", () => {
+      menuSection.classList.remove("show");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+
+</html>
